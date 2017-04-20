@@ -14,8 +14,22 @@
 				<ion-card-title>
 					{{ bot.name }}
 				</ion-card-title>
-				<p>{{ bot.description }}</p>
+				<p class="item item-text-wrap">{{ bot.description }}</p>
 			</ion-card-content>
+			<ion-row no-padding>
+				<ion-col text-right>
+					<button ion-button clear color="primary" icon-left>
+          				<ion-icon name="eye"></ion-icon>
+          				More
+        			</button>
+				</ion-col>
+				<ion-col text-right>
+					<a href="http://telegram.me/{{ bot.link }}" ion-button clear color="primary" icon-left>
+          				<ion-icon name='ios-paper-plane'></ion-icon>
+          				Add to Telegram
+        			</a>
+				</ion-col>
+			</ion-row>
 		</ion-card>
 	</div>
 

@@ -11,7 +11,7 @@ export class HomePage {
 
 	bots: any;
 	imageHeight: string = "100";
-	imageWidth: string = "250";
+	imageWidth: string = "400";
 	loader: Loading;
 
 	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController) {
