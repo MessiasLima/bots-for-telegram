@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, LoadingController, Loading, ModalController, ModalOptions } from 'ionic-angular';
 import { BotsService } from "./../../providers/bots-service";
+import { BotDetail } from "./../bot-detail/bot-detail";
 
 @Component({
 	selector: 'page-home',
@@ -14,7 +15,7 @@ export class HomePage {
 	imageWidth: string = "400";
 	loader: Loading;
 
-	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController) {
+	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController, public modalController: ModalController) {
 		this.presentLoading();
 		botService.getBots().subscribe(
 			result => {
@@ -24,7 +25,7 @@ export class HomePage {
 		);
 	}
 
-	dismissLoading(){
+	dismissLoading() {
 		this.loader.dismiss();
 	}
 
@@ -42,5 +43,12 @@ export class HomePage {
 		}
 		link = link.replace("[WIDTH]", this.imageWidth);
 		return link.replace("[HEIGHT]", this.imageHeight);
+	}
+
+	viewDetails(bot:any) {
+		let modalOptions: ModalOptions = {};
+		modalOptions.enableBackdropDismiss = true;
+		modalOptions.showBackdrop = true;
+		this.modalController.create(BotDetail, bot, modalOptions).present();
 	}
 }
