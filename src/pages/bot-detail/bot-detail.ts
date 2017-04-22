@@ -13,15 +13,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
     templateUrl: 'bot-detail.html',
 })
 export class BotDetail {
-
+    bot: any = {};
     constructor(public navCtrl: NavController, public navParams: NavParams, public viewController: ViewController) {
+        this.bot = navParams.get("bot");
+        console.log(this.bot);
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad BotDetail');
-    }
-
-    close(){
+    close() {
         this.viewController.dismiss();
     }
 }

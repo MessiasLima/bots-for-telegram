@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, Loading, ModalController, ModalOptions } from 'ionic-angular';
+import { NavController, LoadingController, Loading } from 'ionic-angular';
 import { BotsService } from "./../../providers/bots-service";
 import { BotDetail } from "./../bot-detail/bot-detail";
 
@@ -11,16 +11,25 @@ import { BotDetail } from "./../bot-detail/bot-detail";
 export class HomePage {
 
 	bots: any;
-	imageHeight: string = "100";
+	imageHeight: string = "150";
 	imageWidth: string = "400";
 	loader: Loading;
+	failure: boolean = false;
 
-	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController, public modalController: ModalController) {
+	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController) {
+		this.getBots();
+	}
+
+	getBots() {
 		this.presentLoading();
-		botService.getBots().subscribe(
+		this.botService.getBots().subscribe(
 			result => {
 				this.bots = result;
 				this.dismissLoading();
+			},
+			err => {
+				this.dismissLoading();
+				this.failure = true;
 			}
 		);
 	}
@@ -31,8 +40,7 @@ export class HomePage {
 
 	presentLoading() {
 		this.loader = this.loadingController.create({
-			content: "Please wait...",
-			duration: 3000
+			content: "Please wait..."
 		});
 		this.loader.present();
 	}
@@ -45,10 +53,7 @@ export class HomePage {
 		return link.replace("[HEIGHT]", this.imageHeight);
 	}
 
-	viewDetails(bot:any) {
-		let modalOptions: ModalOptions = {};
-		modalOptions.enableBackdropDismiss = true;
-		modalOptions.showBackdrop = true;
-		this.modalController.create(BotDetail, bot, modalOptions).present();
+	viewDetails(bot: any) {
+		this.navCtrl.push(BotDetail, { "bot": bot });
 	}
 }

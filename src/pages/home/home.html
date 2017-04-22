@@ -9,29 +9,45 @@
 <ion-content class="card-background-page">
 	<div *ngFor="let bot of bots">
 		<ion-card>
-			<img ion-avatar src="{{ getImageFromLinkTemplate(bot.photo) }}" />
+			<img ion-avatar src="{{ getImageFromLinkTemplate(bot.photo) }}" (click)="viewDetails(bot)"/>
 			<ion-card-content>
-				<ion-card-title>
+				<ion-card-title (click)="viewDetails(bot)">
 					{{ bot.name }}
 				</ion-card-title>
-				<p><ion-icon name='star'></ion-icon>{{ bot.rating }}/5.0</p>
-				<p class="item item-text-wrap">{{ bot.description }}</p>
+				<p>
+					Rating:
+					<ion-icon name='star' *ngIf="bot.rating > 0 "></ion-icon>
+					<ion-icon name='star' *ngIf="bot.rating > 1 "></ion-icon>
+					<ion-icon name='star' *ngIf="bot.rating > 2 "></ion-icon>
+					<ion-icon name='star' *ngIf="bot.rating > 3 "></ion-icon>
+					<ion-icon name='star' *ngIf="bot.rating > 4 "></ion-icon>
+				</p>
+				<ion-badge class="badge" item-right>{{ bot.categoryId }}</ion-badge>
+				<p class="item item-text-wrap">
+					{{ bot.shortDesc }}
+				</p>
 			</ion-card-content>
 			<ion-row no-padding>
 				<ion-col text-right>
-					<button ion-button clear color="primary" icon-left (click)="viewDetails(bot)">
+					<button ion-button clear small color="primary" icon-left (click)="viewDetails(bot)">
           				<ion-icon name="eye"></ion-icon>
           				More
         			</button>
 				</ion-col>
 				<ion-col text-right>
-					<a href="http://telegram.me/{{ bot.link }}" ion-button clear color="primary" icon-left>
-          				<ion-icon name='ios-paper-plane'></ion-icon>
-          				Add to Telegram
-        			</a>
+					<a href="http://telegram.me/{{ bot.link }}" ion-button clear small color="primary" icon-left>
+						<ion-icon name='ios-paper-plane'></ion-icon>
+						Add to Telegram
+					</a>
 				</ion-col>
 			</ion-row>
 		</ion-card>
+	</div>
+
+	<div class="message" *ngIf="failure">
+		<h4>Connection failed</h4>
+		<p>Please, verify your internet connection and try again</p>
+		<button ion-button (click)="getBots()">Try again</button>
 	</div>
 
 </ion-content>
