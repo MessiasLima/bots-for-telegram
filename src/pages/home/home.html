@@ -27,20 +27,25 @@
 					{{ bot.shortDesc }}
 				</p>
 			</ion-card-content>
+
 			<ion-row no-padding>
-				<ion-col text-right>
+				<ion-col></ion-col>
+				<ion-col></ion-col>
+				<ion-col></ion-col>
+				<ion-col>
 					<button ion-button clear small color="primary" icon-left (click)="viewDetails(bot)">
           				<ion-icon name="eye"></ion-icon>
           				More
         			</button>
 				</ion-col>
-				<ion-col text-right>
+				<ion-col>
 					<a href="http://telegram.me/{{ bot.link }}" ion-button clear small color="primary" icon-left>
 						<ion-icon name='ios-paper-plane'></ion-icon>
 						Add to Telegram
 					</a>
 				</ion-col>
 			</ion-row>
+
 		</ion-card>
 	</div>
 
