@@ -3,9 +3,10 @@
 		<ion-title>{{ bot.name }}</ion-title>
 	</ion-navbar>
 </ion-header>
-<ion-content class="card-background-page">
-	<img text-center src="{{ getImageFromLinkTemplate(bot.photo) }}" />
-	<ion-content padding="">
+
+<ion-content>
+	<img class="image" src="{{ getImageFromLinkTemplate(bot.photo) }}" />
+	<div padding>
 		<h2>{{ bot.name }}</h2>
 		<p>
 			Rating:
@@ -22,5 +23,5 @@
 			<ion-icon name='ios-paper-plane'></ion-icon>
 			Add to Telegram
 		</a>
-	</ion-content>
+	</div>
 </ion-content>
