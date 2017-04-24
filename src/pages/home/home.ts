@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, Loading } from 'ionic-angular';
 import { BotsService } from "./../../providers/bots-service";
 import { BotDetail } from "./../bot-detail/bot-detail";
+import { Options } from "./../options/options"
 
 @Component({
 	selector: 'page-home',

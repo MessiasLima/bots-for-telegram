@@ -8,13 +8,15 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { BotDetail } from "../pages/bot-detail/bot-detail";
+import { Options } from "../pages/options/options";
 
 
 @NgModule({
 	declarations: [
 		MyApp,
 		HomePage,
-		BotDetail
+		BotDetail,
+		Options
 	],
 	imports: [
 		BrowserModule,
@@ -25,7 +27,8 @@ import { BotDetail } from "../pages/bot-detail/bot-detail";
 	entryComponents: [
 		MyApp,
 		HomePage,
-		BotDetail
+		BotDetail,
+		Options
 	],
 	providers: [
 		StatusBar,

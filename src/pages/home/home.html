@@ -3,13 +3,18 @@
 		<ion-title>
 			Bots for Telegram
 		</ion-title>
+		<ion-buttons start>
+			<button ion-button menuToggle icon-only>
+        		<ion-icon name="menu"></ion-icon>
+      		</button>
+		</ion-buttons>
 	</ion-navbar>
 </ion-header>
 
 <ion-content class="card-background-page">
 	<div *ngFor="let bot of bots">
 		<ion-card>
-			<img ion-avatar src="{{ getImageFromLinkTemplate(bot.photo) }}" (click)="viewDetails(bot)"/>
+			<img ion-avatar src="{{ getImageFromLinkTemplate(bot.photo) }}" (click)="viewDetails(bot)" />
 			<ion-card-content>
 				<ion-card-title (click)="viewDetails(bot)">
 					{{ bot.name }}
