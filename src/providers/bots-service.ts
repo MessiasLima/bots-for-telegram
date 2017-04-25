@@ -11,6 +11,18 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BotsService {
 
+	public searchParam:string;
+	
+	public list:any;
+	public listArray: any[] = [
+		{ parameter: "recent", name: "Recent"}
+	];
+
+	public categoryId;
+	public languages:string[] = [];
+	public offset:number = 0;
+	public count: number = 48;
+
 	constructor(public http: Http) {
 		console.log('Hello BotsService Provider');
 	}

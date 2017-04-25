@@ -1,18 +1,20 @@
 <ion-menu [content]="content">
     <ion-header>
         <ion-toolbar>
-            <ion-title>Pages</ion-title>
+            <ion-title>Search</ion-title>
         </ion-toolbar>
     </ion-header>
     <ion-content>
         <ion-list>
-            <button ion-item>
-        Login
-      </button>
-            <button ion-item>
-        Signup
-      </button>
+            <ion-item>
+                <ion-label floating>Search by name</ion-label>
+                <ion-input type="text" [(ngModel)] = "botService.searchParam"></ion-input>
+            </ion-item>
+            <ion-item>
+              
+            </ion-item>
         </ion-list>
+            <button ion-button block >Search</button>
     </ion-content>
 </ion-menu>
 <ion-nav #content [root]="rootPage"></ion-nav>
