@@ -1,3 +1,23 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Search</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Search by name</ion-label>
+                <ion-input type="text" [(ngModel)] = "botService.searchParam"></ion-input>
+            </ion-item>
+            <ion-item>
+              
+            </ion-item>
+        </ion-list>
+            <button ion-button block menuToggle (click)="getBots()">Search</button>
+    </ion-content>
+</ion-menu>
+
 <ion-header>
 	<ion-navbar>
 		<ion-buttons start>
@@ -11,7 +31,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page">
+<ion-content #content  class="card-background-page">
 	<div *ngFor="let bot of bots">
 		<ion-card>
 			<img ion-avatar src="{{ getImageFromLinkTemplate(bot.photo) }}" (click)="viewDetails(bot)" />
