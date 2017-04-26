@@ -15,13 +15,22 @@ export class HomePage {
 	imageWidth: string = "400";
 	loader: Loading;
 	failure: boolean = false;
-	searchParam:string = "vazio";
+
+	//Search Variables
+	searchParam: string;
+
+	list: string = "recent";
+	listArray: any[] = [
+		{ name: "Recent", value: "recent" },
+		{ name: "Best new", value: "best_new" },
+		{ name: "Top", value: "top" }
+		];
 
 	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController) {
 		this.getBots();
 	}
 
-	public setSearchParam(param:string){
+	public setSearchParam(param: string) {
 		this.searchParam = param;
 	}
 
@@ -62,7 +71,7 @@ export class HomePage {
 		this.navCtrl.push(BotDetail, { "bot": bot });
 	}
 
-	ionViewDidEnter(){
-		
+	ionViewDidEnter() {
+
 	}
 }
