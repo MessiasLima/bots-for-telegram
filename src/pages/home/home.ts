@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, Loading } from 'ionic-angular';
 import { BotsService } from "./../../providers/bots-service";
 import { BotDetail } from "./../bot-detail/bot-detail";
+import { CategoriesProvider } from "./../../providers/categories-provider";
 
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html',
-	providers: [BotsService]
+	providers: [BotsService, CategoriesProvider]
 })
 export class HomePage {
 
@@ -15,19 +16,37 @@ export class HomePage {
 	imageWidth: string = "400";
 	loader: Loading;
 	failure: boolean = false;
+	categories: any[];
+	noBots:boolean = false;
 
 	//Search Variables
 	searchParam: string;
 
+	//List
 	list: string = "recent";
 	listArray: any[] = [
 		{ name: "Recent", value: "recent" },
 		{ name: "Best new", value: "best_new" },
 		{ name: "Top", value: "top" }
 		];
+	
+	//Categories
+	category:string = "entertainment";
 
-	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController) {
+	constructor(public navCtrl: NavController, public botService: BotsService, public loadingController: LoadingController, public categoriesService: CategoriesProvider) {
 		this.getBots();
+		this.getCategories();
+	}
+
+	getCategories(){
+		this.categoriesService.getCategories().subscribe(
+			result => {
+				this.categories = result;
+			},
+			error=>{
+				console.log(error);
+			}
+		);
 	}
 
 	public setSearchParam(param: string) {
@@ -36,9 +55,14 @@ export class HomePage {
 
 	getBots() {
 		this.presentLoading();
-		this.botService.getBots().subscribe(
+		this.botService.getBots(this.list, this.category).subscribe(
 			result => {
 				this.bots = result;
+				if(this.bots.length < 1 ){
+					this.noBots = true;
+				}else{
+					this.noBots = false;
+				}
 				this.dismissLoading();
 			},
 			err => {

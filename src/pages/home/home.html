@@ -18,6 +18,14 @@
 					</div>
 				</ion-select>
 			</ion-item>
+			<ion-item>
+				<ion-label>Categories</ion-label>
+				<ion-select [(ngModel)]="category" multiple="false">
+					<div *ngFor="let c of categories">
+						<ion-option value="{{ c.id }}" selected="true">{{ c.localizedTitle }}</ion-option>
+					</div>
+				</ion-select>
+			</ion-item>
 		</ion-list>
 		<button ion-button block menuToggle (click)="getBots()">Search</button>
 	</ion-content>
@@ -25,7 +33,7 @@
 
 <ion-header>
 	<ion-navbar>
-		<ion-buttons right >							
+		<ion-buttons right>
 			<button ion-button menuToggle icon-only>
         		<ion-icon name="search"></ion-icon>
       		</button>
@@ -83,6 +91,11 @@
 		<h4>Connection failed</h4>
 		<p>Please, verify your internet connection and try again</p>
 		<button ion-button (click)="getBots()">Try again</button>
+	</div>
+
+	<div class="message" *ngIf="noBots">
+		<h4>0 results</h4>
+		<p>Please, verify your search parameters and try again</p>
 	</div>
 
 </ion-content>

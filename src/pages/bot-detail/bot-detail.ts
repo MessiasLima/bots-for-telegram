@@ -12,7 +12,6 @@ export class BotDetail {
     bot: any = {};
     constructor(public navCtrl: NavController, public navParams: NavParams, public viewController: ViewController) {
         this.bot = navParams.get("bot");
-        console.log(this.bot);
     }
 
     getImageFromLinkTemplate(link: string) {
